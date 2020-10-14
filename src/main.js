@@ -118,3 +118,8 @@ function accessTitles() {
   return titles[getRandomIndex(titles)]
 }
 accessTitles();
+
+function accessQuotes() {
+  return titles[getRandomIndex(quotes)]
+}
+accessQuotes();
