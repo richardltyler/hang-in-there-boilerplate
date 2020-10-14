@@ -113,3 +113,8 @@ function accessImage() {
   console.log(images[getRandomIndex(images)])
 }
 accessImage();
+
+function accessTitles() {
+  return titles[getRandomIndex(titles)]
+}
+accessTitles();
