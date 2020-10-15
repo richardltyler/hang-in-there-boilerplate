@@ -1,4 +1,7 @@
 // query selector variables go here 👇
+var mainImage = document.querySelector('.poster-img');
+var mainTitle = document.querySelector('h1');
+var mainQuote = document.querySelector('.poster-quote');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -110,16 +113,16 @@ function getRandomIndex(array) {
 }
 
 function accessImage() {
-  console.log(images[getRandomIndex(images)])
+  return mainImage.src = images[getRandomIndex(images)];
 }
 accessImage();
 
 function accessTitles() {
-  return titles[getRandomIndex(titles)]
+  return mainTitle.innerText = titles[getRandomIndex(titles)];
 }
 accessTitles();
 
 function accessQuotes() {
-  return titles[getRandomIndex(quotes)]
+  return mainQuote.innerText = quotes[getRandomIndex(quotes)];
 }
 accessQuotes();
