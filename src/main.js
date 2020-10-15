@@ -109,3 +109,17 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+function accessImage() {
+  console.log(images[getRandomIndex(images)])
+}
+accessImage();
+
+function accessTitles() {
+  return titles[getRandomIndex(titles)]
+}
+accessTitles();
+
+function accessQuotes() {
+  return titles[getRandomIndex(quotes)]
+}
+accessQuotes();
