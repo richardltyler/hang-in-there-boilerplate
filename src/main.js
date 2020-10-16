@@ -3,9 +3,13 @@ var mainImage = document.querySelector('.poster-img');
 var mainTitle = document.querySelector('h1');
 var mainQuote = document.querySelector('.poster-quote');
 var randomizeButton = document.querySelector('.show-random');
-var displayFormButton = document.querySelector('.show-form');
+var openFormButton = document.querySelector('.show-form');
+var leaveFormButton = document.querySelector('.show-main');
+var openSavedButton = document.querySelector('.show-saved');
+var leaveSavedButton = document.querySelector('.back-to-main');
 var formPage = document.querySelector('.hidden');
 var mainPage = document.querySelector('.main-poster');
+var savedPage = document.querySelector('.saved-posters');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -110,7 +114,10 @@ var currentPoster;
 
 // event listeners go here 👇
 randomizeButton.addEventListener('click', generatePoster);
-displayFormButton.addEventListener('click', openForm);
+openFormButton.addEventListener('click', openForm);
+leaveFormButton.addEventListener('click', closeForm);
+openSavedButton.addEventListener('click', openSaved);
+leaveSavedButton.addEventListener('click', closeSaved);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -128,4 +135,19 @@ generatePoster();
 function openForm() {
   mainPage.classList.add('hidden');
   formPage.classList.remove('hidden');
+}
+
+function closeForm() {
+  mainPage.classList.remove('hidden');
+  formPage.classList.add('hidden');
+}
+
+function openSaved() {
+  mainPage.classList.add('hidden');
+  savedPage.classList.remove('hidden');
+}
+
+function closeSaved() {
+  mainPage.classList.remove('hidden');
+  savedPage.classList.add('hidden');
 }
