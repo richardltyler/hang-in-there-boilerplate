@@ -7,9 +7,13 @@ var openFormButton = document.querySelector('.show-form');
 var leaveFormButton = document.querySelector('.show-main');
 var openSavedButton = document.querySelector('.show-saved');
 var leaveSavedButton = document.querySelector('.back-to-main');
+var makePosterButton = document.querySelector('.make-poster');
 var formPage = document.querySelector('.hidden');
 var mainPage = document.querySelector('.main-poster');
 var savedPage = document.querySelector('.saved-posters');
+var titleInput = document.querySelector('#poster-title');
+var imageInput = document.querySelector('#poster-image-url');
+var quoteInput = document.querySelector('#poster-quote');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -118,6 +122,7 @@ openFormButton.addEventListener('click', openForm);
 leaveFormButton.addEventListener('click', closeForm);
 openSavedButton.addEventListener('click', openSaved);
 leaveSavedButton.addEventListener('click', closeSaved);
+makePosterButton.addEventListener('click', customPoster);
 
 // functions and event handlers go here 👇
 
@@ -151,4 +156,16 @@ function openSaved() {
 function closeSaved() {
   mainPage.classList.remove('hidden');
   savedPage.classList.add('hidden');
+}
+
+function customPoster() {
+  event.preventDefault();
+  titles.push(titleInput.value);
+  mainTitle.innerText = titleInput.value;
+  images.push(imageInput.value);
+  mainImage.src = imageInput.value;
+  quotes.push(quoteInput.value);
+  mainQuote.innerText = quoteInput.value;
+  mainPage.classList.remove('hidden');
+  formPage.classList.add('hidden');
 }
