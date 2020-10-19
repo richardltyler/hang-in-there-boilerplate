@@ -14,6 +14,8 @@ var savedPage = document.querySelector('.saved-posters');
 var titleInput = document.querySelector('#poster-title');
 var imageInput = document.querySelector('#poster-image-url');
 var quoteInput = document.querySelector('#poster-quote');
+var savePosterButton = document.querySelector('.save-poster');
+var savedPostersGrid = document.querySelector('.saved-posters-grid');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -116,6 +118,7 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
+
 // event listeners go here 👇
 randomizeButton.addEventListener('click', generatePoster);
 openFormButton.addEventListener('click', openForm);
@@ -123,6 +126,7 @@ leaveFormButton.addEventListener('click', closeForm);
 openSavedButton.addEventListener('click', openSaved);
 leaveSavedButton.addEventListener('click', closeSaved);
 makePosterButton.addEventListener('click', customPoster);
+savePosterButton.addEventListener('click', savePoster)
 
 // functions and event handlers go here 👇
 
@@ -132,11 +136,19 @@ function getRandomIndex(array) {
 }
 
 function generatePoster() {
-  mainImage.src = images[getRandomIndex(images)];
-  mainTitle.innerText = titles[getRandomIndex(titles)];
-  mainQuote.innerText = quotes[getRandomIndex(quotes)];
+  var randomImage = images[getRandomIndex(images)];
+  var randomTitle = titles[getRandomIndex(titles)];
+  var randomQuote = quotes[getRandomIndex(quotes)];
+  currentPoster = new Poster(randomImage, randomTitle, randomQuote);
+  displayPoster(currentPoster);
 }
 generatePoster();
+
+function displayPoster (posterObject) {
+  mainImage.src = posterObject.imageURL;
+  mainTitle.innerText = posterObject.title;
+  mainQuote.innerText = posterObject.quote;
+}
 
 function openForm() {
   mainPage.classList.add('hidden');
@@ -151,6 +163,24 @@ function closeForm() {
 function openSaved() {
   mainPage.classList.add('hidden');
   savedPage.classList.remove('hidden');
+  // savedPostersGrid.innerHTML =
+  //   `<img class="mini-poster" src="" alt="nothin' to see here">
+  //     <h2 class="mini-poster"></h2>
+  //     <h4 class="mini-poster"></h4>`
+
+      for(var i = 0; i < savedPosters.length; i++) {
+        savedPostersGrid.innerHTML +=
+          `<div class="mini-poster">
+          <img src="${savedPosters[i].imageURL}">
+            <h2>${savedPosters[i].title}</h2>
+            <h4>${savedPosters[i].quote}</h4>
+            </div>`
+
+      }
+
+// `<h2 class="mini-poster">${savedPosters[0]}</h2>
+//     // <img class="mini-poster"></img>`
+
 }
 
 function closeSaved() {
@@ -168,4 +198,9 @@ function customPoster() {
   mainQuote.innerText = quoteInput.value;
   mainPage.classList.remove('hidden');
   formPage.classList.add('hidden');
+}
+
+function savePoster() {
+  savedPosters.push(currentPoster);
+  // console.log(currentPoster)
 }
