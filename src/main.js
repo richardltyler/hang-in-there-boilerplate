@@ -163,24 +163,14 @@ function closeForm() {
 function openSaved() {
   mainPage.classList.add('hidden');
   savedPage.classList.remove('hidden');
-  // savedPostersGrid.innerHTML =
-  //   `<img class="mini-poster" src="" alt="nothin' to see here">
-  //     <h2 class="mini-poster"></h2>
-  //     <h4 class="mini-poster"></h4>`
-
-      for(var i = 0; i < savedPosters.length; i++) {
-        savedPostersGrid.innerHTML +=
-          `<div class="mini-poster">
-          <img src="${savedPosters[i].imageURL}">
-            <h2>${savedPosters[i].title}</h2>
-            <h4>${savedPosters[i].quote}</h4>
-            </div>`
-
+  for(var i = 0; i < savedPosters.length; i++) {
+    savedPostersGrid.innerHTML +=
+      `<div class="mini-poster">
+      <img src="${savedPosters[i].imageURL}">
+      <h2>${savedPosters[i].title}</h2>
+      <h4>${savedPosters[i].quote}</h4>
+      </div>`
       }
-
-// `<h2 class="mini-poster">${savedPosters[0]}</h2>
-//     // <img class="mini-poster"></img>`
-
 }
 
 function closeSaved() {
