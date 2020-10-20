@@ -178,7 +178,7 @@ function openSaved() {
       <img id="${savedPosters[i].id}" src="${savedPosters[i].imageURL}">
       <h2 id="${savedPosters[i].id}">${savedPosters[i].title}</h2>
       <h4 id="${savedPosters[i].id}">${savedPosters[i].quote}</h4>
-      </div>`
+      </div>`;
       }
 }
 
@@ -188,9 +188,9 @@ function closeSaved() {
 }
 
 function createCustomPoster() {
-  var customTitle = titleInput.value
-  var customQuote = quoteInput.value
-  var customImage = imageInput.value
+  var customTitle = titleInput.value;
+  var customQuote = quoteInput.value;
+  var customImage = imageInput.value;
   currentPoster = new Poster(customImage, customTitle, customQuote);
   displayCustomPoster(customTitle, customImage, customQuote);
 }
@@ -209,7 +209,7 @@ function displayCustomPoster(newTitle, newImage, newQuote) {
 function savePoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.unshift(currentPoster);
-  };
+  }
 }
 
 function deletePoster() {
