@@ -9,7 +9,7 @@
   If you find yourself especially moved by the poster currently displayed, you can save it for later inspiration by clicking the "Save Poster" button in the bottom left of the poster. <br>
   To view your saved posters, click "Show saved posters", and it will take you to your own little hype dungeon. If you decide one of the posters you've saved is no longer the kind of motivation you want, double click the reject to have it removed from your saved posters. When you want to continue generating motivation, click "Back to Main". <br
 
-[link](https://giphy.com/gifs/yTJDnhuFPBRhLkDIvY/html5)
+![link](https://media.giphy.com/media/yTJDnhuFPBRhLkDIvY/giphy.gif)
 
 ## Set Up
 1. Fork [this](https://github.com/richardltyler/hang-in-there-boilerplate) repository.
