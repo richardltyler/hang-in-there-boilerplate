@@ -1,24 +1,25 @@
-// query selector variables go here 👇
-var mainImage = document.querySelector('.poster-img');
-var mainTitle = document.querySelector('h1');
-var mainQuote = document.querySelector('.poster-quote');
-var randomizeButton = document.querySelector('.show-random');
-var openFormButton = document.querySelector('.show-form');
-var leaveFormButton = document.querySelector('.show-main');
-var openSavedButton = document.querySelector('.show-saved');
-var leaveSavedButton = document.querySelector('.back-to-main');
-var makePosterButton = document.querySelector('.make-poster');
-var formPage = document.querySelector('.hidden');
-var mainPage = document.querySelector('.main-poster');
-var savedPage = document.querySelector('.saved-posters');
-var titleInput = document.querySelector('#poster-title');
-var imageInput = document.querySelector('#poster-image-url');
-var quoteInput = document.querySelector('#poster-quote');
-var savePosterButton = document.querySelector('.save-poster');
-var savedPostersGrid = document.querySelector('.saved-posters-grid');
+var mainPage = document.querySelector(".main-poster");
+var mainImage = document.querySelector(".poster-img");
+var mainTitle = document.querySelector("h1");
+var mainQuote = document.querySelector(".poster-quote");
+
+var formPage = document.querySelector(".hidden");
+var titleInput = document.querySelector("#poster-title");
+var imageInput = document.querySelector("#poster-image-url");
+var quoteInput = document.querySelector("#poster-quote");
+
+var savedPage = document.querySelector(".saved-posters");
+var savedPostersGrid = document.querySelector(".saved-posters-grid");
+
+var randomizeButton = document.querySelector(".show-random");
+var openFormButton = document.querySelector(".show-form");
+var leaveFormButton = document.querySelector(".show-main");
+var openSavedButton = document.querySelector(".show-saved");
+var leaveSavedButton = document.querySelector(".back-to-main");
+var makePosterButton = document.querySelector(".make-poster");
+var savePosterButton = document.querySelector(".save-poster");
 
 
-// we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -120,18 +121,18 @@ var savedPosters = [];
 var currentPoster;
 
 
-// event listeners go here 👇
-window.addEventListener('load', generatePoster);
-randomizeButton.addEventListener('click', generatePoster);
-openFormButton.addEventListener('click', openForm);
-leaveFormButton.addEventListener('click', closeForm);
-openSavedButton.addEventListener('click', openSaved);
-leaveSavedButton.addEventListener('click', closeSaved);
-makePosterButton.addEventListener('click', customPoster);
-savePosterButton.addEventListener('click', savePoster);
-savedPostersGrid.addEventListener('dblclick', deletePoster);
 
-// functions and event handlers go here 👇
+window.addEventListener("load", generatePoster);
+randomizeButton.addEventListener("click", generatePoster);
+openFormButton.addEventListener("click", openAndCloseForm);
+leaveFormButton.addEventListener("click", openAndCloseForm);
+openSavedButton.addEventListener("click", openSaved);
+leaveSavedButton.addEventListener("click", closeSaved);
+makePosterButton.addEventListener("click", customPoster);
+savePosterButton.addEventListener("click", savePoster);
+savedPostersGrid.addEventListener("dblclick", deletePoster);
+
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -144,25 +145,32 @@ function generatePoster() {
   displayPoster(currentPoster);
 }
 
-function displayPoster (posterObject) {
-  mainImage.src = posterObject.imageURL;
-  mainTitle.innerText = posterObject.title;
-  mainQuote.innerText = posterObject.quote;
+function displayPoster(livePoster) {
+  mainImage.src = livePoster.imageURL;
+  mainTitle.innerText = livePoster.title;
+  mainQuote.innerText = livePoster.quote;
 }
 
-function openForm() {
-  mainPage.classList.add('hidden');
-  formPage.classList.remove('hidden');
+function swapMainPage() {
+  mainPage.classList.toggle("hidden");
 }
 
-function closeForm() {
-  mainPage.classList.remove('hidden');
-  formPage.classList.add('hidden');
+function swapFormPage() {
+  formPage.classList.toggle("hidden");
+}
+
+function swapSavedPage() {
+  savedPage.classList.toggle("hidden");
+}
+
+function openAndCloseForm() {
+  swapMainPage();
+  swapFormPage();
 }
 
 function openSaved() {
-  mainPage.classList.add('hidden');
-  savedPage.classList.remove('hidden');
+  mainPage.classList.add("hidden");
+  savedPage.classList.remove("hidden");
   savedPostersGrid.innerHTML = ``;
   for(var i = 0; i < savedPosters.length; i++) {
     savedPostersGrid.innerHTML +=
@@ -175,8 +183,8 @@ function openSaved() {
 }
 
 function closeSaved() {
-  mainPage.classList.remove('hidden');
-  savedPage.classList.add('hidden');
+  swapMainPage();
+  swapSavedPage();
 }
 
 function customPoster() {
@@ -187,20 +195,18 @@ function customPoster() {
   mainImage.src = imageInput.value;
   quotes.push(quoteInput.value);
   mainQuote.innerText = quoteInput.value;
-  mainPage.classList.remove('hidden');
-  formPage.classList.add('hidden');
+  openAndCloseForm();
 }
 
 function savePoster() {
-  if(!savedPosters.includes(currentPoster)) {
+  if (!savedPosters.includes(currentPoster)) {
     savedPosters.unshift(currentPoster);
   };
 }
 
 function deletePoster() {
-  var miniPoster = event.target.id;
   for (var i = 0; i < savedPosters.length; i++) {
-    if(miniPoster === `${savedPosters[i].id}`) {
+    if (event.target.id === `${savedPosters[i].id}`) {
       savedPosters.splice(i, 1);
     }
   }
