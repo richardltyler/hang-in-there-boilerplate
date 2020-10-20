@@ -17,6 +17,7 @@ var quoteInput = document.querySelector('#poster-quote');
 var savePosterButton = document.querySelector('.save-poster');
 var savedPostersGrid = document.querySelector('.saved-posters-grid');
 
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -120,17 +121,17 @@ var currentPoster;
 
 
 // event listeners go here 👇
+window.addEventListener('load', generatePoster);
 randomizeButton.addEventListener('click', generatePoster);
 openFormButton.addEventListener('click', openForm);
 leaveFormButton.addEventListener('click', closeForm);
 openSavedButton.addEventListener('click', openSaved);
 leaveSavedButton.addEventListener('click', closeSaved);
 makePosterButton.addEventListener('click', customPoster);
-savePosterButton.addEventListener('click', savePoster)
+savePosterButton.addEventListener('click', savePoster);
+savedPostersGrid.addEventListener('dblclick', deletePoster);
 
 // functions and event handlers go here 👇
-
-// (we've provided one for you to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -142,7 +143,6 @@ function generatePoster() {
   currentPoster = new Poster(randomImage, randomTitle, randomQuote);
   displayPoster(currentPoster);
 }
-generatePoster();
 
 function displayPoster (posterObject) {
   mainImage.src = posterObject.imageURL;
@@ -163,12 +163,13 @@ function closeForm() {
 function openSaved() {
   mainPage.classList.add('hidden');
   savedPage.classList.remove('hidden');
+  savedPostersGrid.innerHTML = ``;
   for(var i = 0; i < savedPosters.length; i++) {
     savedPostersGrid.innerHTML +=
-      `<div class="mini-poster">
-      <img src="${savedPosters[i].imageURL}">
-      <h2>${savedPosters[i].title}</h2>
-      <h4>${savedPosters[i].quote}</h4>
+      `<div class="mini-poster" id="${savedPosters[i].id}">
+      <img id="${savedPosters[i].id}" src="${savedPosters[i].imageURL}">
+      <h2 id="${savedPosters[i].id}">${savedPosters[i].title}</h2>
+      <h4 id="${savedPosters[i].id}">${savedPosters[i].quote}</h4>
       </div>`
       }
 }
@@ -191,6 +192,17 @@ function customPoster() {
 }
 
 function savePoster() {
-  savedPosters.push(currentPoster);
-  // console.log(currentPoster)
+  if(!savedPosters.includes(currentPoster)) {
+    savedPosters.unshift(currentPoster);
+  };
+}
+
+function deletePoster() {
+  var miniPoster = event.target.id;
+  for (var i = 0; i < savedPosters.length; i++) {
+    if(miniPoster === `${savedPosters[i].id}`) {
+      savedPosters.splice(i, 1);
+    }
+  }
+  openSaved();
 }
