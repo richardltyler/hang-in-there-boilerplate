@@ -128,7 +128,7 @@ openFormButton.addEventListener("click", openAndCloseForm);
 leaveFormButton.addEventListener("click", openAndCloseForm);
 openSavedButton.addEventListener("click", openSaved);
 leaveSavedButton.addEventListener("click", closeSaved);
-makePosterButton.addEventListener("click", customPoster);
+makePosterButton.addEventListener("click", createCustomPoster);
 savePosterButton.addEventListener("click", savePoster);
 savedPostersGrid.addEventListener("dblclick", deletePoster);
 
@@ -187,15 +187,23 @@ function closeSaved() {
   swapSavedPage();
 }
 
-function customPoster() {
-  event.preventDefault();
-  titles.push(titleInput.value);
-  mainTitle.innerText = titleInput.value;
-  images.push(imageInput.value);
-  mainImage.src = imageInput.value;
-  quotes.push(quoteInput.value);
-  mainQuote.innerText = quoteInput.value;
+function createCustomPoster() {
+  var customTitle = titleInput.value
+  var customQuote = quoteInput.value
+  var customImage = imageInput.value
+  currentPoster = new Poster(customImage, customTitle, customQuote);
+  displayCustomPoster(customTitle, customImage, customQuote);
+}
+
+function displayCustomPoster(newTitle, newImage, newQuote) {
+  titles.push(newTitle);
+  mainTitle.innerText = newTitle;
+  images.push(newImage);
+  mainImage.src = newImage;
+  quotes.push(newQuote);
+  mainQuote.innerText = newQuote;
   openAndCloseForm();
+  event.preventDefault();
 }
 
 function savePoster() {
