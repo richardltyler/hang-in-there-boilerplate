@@ -1,7 +1,7 @@
 # Hang In There
 
 ## Description
-  This is a webpage that randomly generates motivational posters for days when the brain fog comes rolling in a little too thick. You can find it at <file:///Users/richardtyler/turing/mod1/projects/hang-in-there-boilerplate/index.html>.
+  This is a webpage that randomly generates motivational posters for days when the brain fog comes rolling in a little too thick. You can find it at file:///Users/richardtyler/turing/mod1/projects/hang-in-there-boilerplate/index.html.
 
 ## Usage
   When you open the page, a bit of random motivation is automatically generated for you. If the first poster doesn't speak to you, press the "Show Another Random Poster" button to generate new motivation. <br>
